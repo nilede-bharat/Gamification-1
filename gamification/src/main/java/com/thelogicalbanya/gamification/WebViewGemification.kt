@@ -20,10 +20,10 @@ class WebViewGemification constructor(context : Context ,attrs : AttributeSet): 
     }
 
      fun loadWebview() {
-         loadUrl(clientID = "", key = "", userID = "", username = "")
+         init(clientID = "", key = "", userID = "", username = "")
     }
 
-    fun loadUrl(clientID : String,key : String,userID:String,username:String){
+    fun init(clientID : String,key : String,userID:String,username:String){
         val keyString = "bR5z6*r$00p#Eno__odrEgeW"
         val baseUrl = "https://thelogicalbanya.com/popupdemo/dashboard.php"
         // Your original JSON string
@@ -48,9 +48,11 @@ class WebViewGemification constructor(context : Context ,attrs : AttributeSet): 
             val finalUrl = "$baseUrl?data=$encodedData"
 
             val webView = findViewById<WebView>(R.id.gemification_webview)
-            webView.loadUrl(finalUrl)
+
             webView.settings.javaScriptEnabled = true
             webView.webViewClient = WebViewClient()
+
+            webView.loadUrl(finalUrl)
         } catch (e: Exception) {
             e.printStackTrace()
         }

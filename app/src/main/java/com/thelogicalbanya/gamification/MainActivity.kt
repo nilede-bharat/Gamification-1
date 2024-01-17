@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val button: WebViewGemification = findViewById<WebViewGemification>(R.id.button)
-        button.loadUrl(clientID = "demo", key = "demo", userID = "100031", username = "TheLogicalBanya")
+        button.init(clientID = "demo", key = "demo", userID = "100031", username = "TheLogicalBanya")
 
     }
 }
