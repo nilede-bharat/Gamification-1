@@ -1,9 +1,12 @@
 package com.thelogicalbanya.gamification
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.util.AttributeSet
 import android.util.Base64
+import android.util.Log
 import android.view.LayoutInflater
+import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -14,6 +17,7 @@ import java.net.URLEncoder
 class WebViewGemification constructor(context : Context ,attrs : AttributeSet): ConstraintLayout(context , attrs){
 
     private var binding : LayoutWebviewBinding? = null
+
     init {
        binding = LayoutWebviewBinding.inflate(LayoutInflater.from(context),this ,true)
         loadWebview()
@@ -46,15 +50,25 @@ class WebViewGemification constructor(context : Context ,attrs : AttributeSet): 
 
             // Construct the final URL
             val finalUrl = "$baseUrl?data=$encodedData"
+            Log.e("Final Url",finalUrl)
 
-            val webView = findViewById<WebView>(R.id.gemification_webview)
 
-            webView.settings.javaScriptEnabled = true
-            webView.webViewClient = WebViewClient()
+           binding?.gemificationWebview?.settings?.javaScriptEnabled = true
+            binding?.gemificationWebview?.webViewClient = WebViewClient()
 
-            webView.loadUrl(finalUrl)
+
+            binding?.gemificationWebview?.loadUrl(finalUrl)
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+    }
+
+    fun onBackPressed(): Boolean {
+        return if (binding?.gemificationWebview?.canGoBack() == true) {
+            binding?.gemificationWebview?.goBack()
+            true // Consumed the back button event
+        } else {
+            false // Didn't consume the back button event
         }
     }
 

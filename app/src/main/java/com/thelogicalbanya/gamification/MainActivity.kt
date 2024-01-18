@@ -6,11 +6,15 @@ import android.os.Bundle
 import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
+    var confirm_button: Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val button: WebViewGemification = findViewById<WebViewGemification>(R.id.button)
-        button.init(clientID = "demo", key = "demo", userID = "100031", username = "TheLogicalBanya")
+        confirm_button= findViewById<Button>(R.id.confirm_button)
+        confirm_button?.setOnClickListener {
+           startActivity(Intent(this,GamesActivity::class.java))
+        }
 
     }
+
 }
