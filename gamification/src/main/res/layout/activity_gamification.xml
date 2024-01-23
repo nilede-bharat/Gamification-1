@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Gamification">
 
-   <com.thelogicalbanya.gamification.WebViewGemification
+   <com.thelogicalbanya.gamification.WebViewGamification
        android:id="@+id/mainActivity"
        app:layout_constraintTop_toTopOf="parent"
        android:layout_width="match_parent"

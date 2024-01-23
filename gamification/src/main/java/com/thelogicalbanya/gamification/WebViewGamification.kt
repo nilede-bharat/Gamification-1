@@ -1,20 +1,17 @@
 package com.thelogicalbanya.gamification
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.util.AttributeSet
 import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
-import android.webkit.WebResourceRequest
-import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.github.mervick.aes_everywhere.Aes256
 import com.thelogicalbanya.gamification.databinding.LayoutWebviewBinding
 import java.net.URLEncoder
 
-class WebViewGemification constructor(context : Context ,attrs : AttributeSet): ConstraintLayout(context , attrs){
+class WebViewGamification constructor(context : Context, attrs : AttributeSet): ConstraintLayout(context , attrs){
 
     private var binding : LayoutWebviewBinding? = null
 
@@ -24,12 +21,11 @@ class WebViewGemification constructor(context : Context ,attrs : AttributeSet): 
     }
 
      fun loadWebview() {
-         init(clientID = "", key = "", userID = "", username = "")
+         init(clientID = "", key = "", userID = "", username = "", keyString = "", baseUrl = "")
     }
 
-    fun init(clientID : String,key : String,userID:String,username:String){
-        val keyString = "bR5z6*r$00p#Eno__odrEgeW"
-        val baseUrl = "https://thelogicalbanya.com/popupdemo/dashboard.php"
+    fun init(clientID : String,key : String,userID:String,username:String ,keyString :String , baseUrl:String){
+
         // Your original JSON string
         val originalJson = """
         {
@@ -53,19 +49,19 @@ class WebViewGemification constructor(context : Context ,attrs : AttributeSet): 
             Log.e("Final Url",finalUrl)
 
 
-           binding?.gemificationWebview?.settings?.javaScriptEnabled = true
-            binding?.gemificationWebview?.webViewClient = WebViewClient()
+           binding?.gamificationWebview?.settings?.javaScriptEnabled = true
+            binding?.gamificationWebview?.webViewClient = WebViewClient()
 
 
-            binding?.gemificationWebview?.loadUrl(finalUrl)
+            binding?.gamificationWebview?.loadUrl(finalUrl)
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
     fun onBackPressed(): Boolean {
-        return if (binding?.gemificationWebview?.canGoBack() == true) {
-            binding?.gemificationWebview?.goBack()
+        return if (binding?.gamificationWebview?.canGoBack() == true) {
+            binding?.gamificationWebview?.goBack()
             true // Consumed the back button event
         } else {
             false // Didn't consume the back button event

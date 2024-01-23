@@ -5,17 +5,19 @@ import android.os.Bundle
 
 class GamesActivity : AppCompatActivity() {
 
-    var webViewGemification: WebViewGemification? = null
+    var webViewGamification: WebViewGamification? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_games)
-        webViewGemification= findViewById(R.id.button)
-        webViewGemification?.init(clientID =    "demo", key = "demo", userID = "100031", username = "TheLogicalBanya")
+        webViewGamification= findViewById(R.id.button)
+        val keyString = "bR5z6*r$00p#Eno__odrEgeW"
+        val baseUrl = "https://thelogicalbanya.com/popupdemo/dashboard.php"
+        webViewGamification?.init(clientID =    "demo", key = "demo", userID = "100031", username = "TheLogicalBanya",keyString = keyString, baseUrl = baseUrl)
 
     }
 
     override fun onBackPressed() {
-        if (!webViewGemification?.onBackPressed()!!) {
+        if (!webViewGamification?.onBackPressed()!!) {
             super.onBackPressed()
         }
     }
