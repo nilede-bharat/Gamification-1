@@ -24,7 +24,18 @@ class WebViewGamification constructor(context : Context, attrs : AttributeSet): 
          init(clientID = "", key = "", userID = "", username = "", keyString = "", baseUrl = "")
     }
 
-    fun init(clientID : String,key : String,userID:String,username:String ,keyString :String , baseUrl:String){
+    fun init(
+        clientID: String,
+        key: String,
+        userID: String,
+        username: String,
+        keyString: String,
+        baseUrl: String,
+        utm_param1: String = "",
+        utm_param2: String = "",
+        utm_param3: String = "",
+        utm_param4: String = ""
+    ) {
 
         // Your original JSON string
         val originalJson = """
@@ -32,7 +43,12 @@ class WebViewGamification constructor(context : Context, attrs : AttributeSet): 
           "clientID": "$clientID",
           "key": "$key",
           "userID": "$userID",
-          "username": "$username"
+          "username": "$username",
+          "utm_param1": "$utm_param1",
+          "utm_param2": "$utm_param2",
+          "utm_param3": "$utm_param3",
+          "utm_param4": "$utm_param4",
+          "utm_source":"Android"
         }
     """.trimIndent()
         try {
@@ -51,8 +67,7 @@ class WebViewGamification constructor(context : Context, attrs : AttributeSet): 
 
            binding?.gamificationWebview?.settings?.javaScriptEnabled = true
             binding?.gamificationWebview?.webViewClient = WebViewClient()
-
-
+            binding?.gamificationWebview?.settings?.mediaPlaybackRequiresUserGesture = false
             binding?.gamificationWebview?.loadUrl(finalUrl)
         } catch (e: Exception) {
             e.printStackTrace()
